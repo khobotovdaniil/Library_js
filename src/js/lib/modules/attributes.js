@@ -4,7 +4,12 @@ $.prototype.addAttributes = function (...attributes) {
     for (let i = 0; i < this.length; i++) {
         for (let j = 0; j < attributes.length; j++) {
             let attr = attributes[j].split('=');
-            this[i].setAttribute(attr[0], attr[1]);
+            if (attr[1]) {
+                this[i].setAttribute(attr[0], attr[1]);
+            } else {
+                this[i].setAttribute(attr[0], attr[0]);
+            }
+            
         }
     }
     return this;
@@ -12,7 +17,9 @@ $.prototype.addAttributes = function (...attributes) {
 
 $.prototype.removeAttributes = function (...attributes) {
     for (let i = 0; i < this.length; i++) {
-        this[i].removeAttribute(...attributes);
+        if (attributes.length) {
+            this[i].removeAttribute(...attributes);
+        }
     }
     return this;
 };
