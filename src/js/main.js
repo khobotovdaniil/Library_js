@@ -1,3 +1,5 @@
 import './lib/lib';
 
-$('.active').toggle().toggle();
+$('button').on('click', function () {
+    $(this).addAttributes('data1=1', 'data2=2').removeAttributes('data1');
+});
