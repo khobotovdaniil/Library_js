@@ -65,3 +65,54 @@ $.prototype.find = function (selector) {
 
     return this;
 };
+
+$.prototype.closest = function (selector) {
+    let counter = 0;
+
+    for (let i = 0; i < this.length; i++) {
+        this[i] = this[i].closest(selector);
+        if (!this[i]) {
+            this[i] = 'not found';
+        }
+        counter++;
+    }
+
+    const objLength = Object.keys(this).length;
+    
+    for (; counter < objLength; counter++) {
+        delete this[counter];
+    }
+
+    return this;
+};
+
+$.prototype.siblings = function () {
+    let numberOfItems = 0;
+    let counter = 0;
+
+    const copyObject = Object.assign({}, this);
+
+    for (let i = 0; i < copyObject.length; i++) {
+        const arr = copyObject[i].parentNode.children;
+
+        for (let j = 0; j < arr.length; j++) {
+            if (copyObject[i] === arr[j]) {
+                continue;
+            }
+
+            this[counter] = arr[j];
+            counter++;
+        }
+
+        numberOfItems += arr.length - 1;
+    }
+
+    this.length = numberOfItems;
+
+    const objLength = Object.keys(this).length;
+    for (; numberOfItems < objLength; numberOfItems++) {
+        delete this[numberOfItems];
+    }
+
+    return this;
+};
