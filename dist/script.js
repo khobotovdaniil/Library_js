@@ -401,48 +401,44 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.animateOverTime = functi
   }
   return _animateOverTime;
 };
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.animateFadeIn = function (i, display, duration, final) {
+  this[i].style.display = display || 'block';
+  const _fadeIn = complection => {
+    this[i].style.opacity = complection;
+  };
+  const ani = this.animateOverTime(duration, _fadeIn, final);
+  requestAnimationFrame(ani);
+  return this;
+};
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.animateFadeOut = function (i, duration, final) {
+  const _fadeOut = complection => {
+    this[i].style.opacity = 1 - complection;
+    if (complection === 1) {
+      this[i].style.display = 'none';
+    }
+  };
+  const ani = this.animateOverTime(duration, _fadeOut, final);
+  requestAnimationFrame(ani);
+  return this;
+};
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.fadeIn = function (duration, display, final) {
   for (let i = 0; i < this.length; i++) {
-    this[i].style.display = display || 'block';
-    const _fadeIn = complection => {
-      this[i].style.opacity = complection;
-    };
-    const ani = this.animateOverTime(duration, _fadeIn, final);
-    requestAnimationFrame(ani);
+    this.animateFadeIn(i, display, duration, final);
   }
   return this;
 };
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.fadeOut = function (duration, final) {
   for (let i = 0; i < this.length; i++) {
-    const _fadeOut = complection => {
-      this[i].style.opacity = 1 - complection;
-      if (complection === 1) {
-        this[i].style.display = 'none';
-      }
-    };
-    const ani = this.animateOverTime(duration, _fadeOut, final);
-    requestAnimationFrame(ani);
+    this.animateFadeOut(i, duration, final);
   }
   return this;
 };
 _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.fadeToggle = function (duration, display, final) {
   for (let i = 0; i < this.length; i++) {
     if (window.getComputedStyle(this[i]).display === 'none') {
-      this[i].style.display = display || 'block';
-      const _fadeIn = complection => {
-        this[i].style.opacity = complection;
-      };
-      const ani = this.animateOverTime(duration, _fadeIn, final);
-      requestAnimationFrame(ani);
+      this.animateFadeIn(i, display, duration, final);
     } else {
-      const _fadeOut = complection => {
-        this[i].style.opacity = 1 - complection;
-        if (complection === 1) {
-          this[i].style.display = 'none';
-        }
-      };
-      const ani = this.animateOverTime(duration, _fadeOut, final);
-      requestAnimationFrame(ani);
+      this.animateFadeOut(i, duration, final);
     }
   }
   return this;
