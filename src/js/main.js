@@ -14,3 +14,4 @@ $('div').click(function () {
 // console.log($('div').eq(2).find('.some'));
 // console.log($('.some').closest('.findme1').addClass('12312'));
 // console.log($('button').html('hello'));
+$('button').fadeIn(1800);
