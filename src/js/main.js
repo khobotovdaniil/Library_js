@@ -45,6 +45,9 @@ $('#trigger').click(() => $('#trigger').createModal({
     }
 }));
 
+// $().get('https://jsonplaceholder.typicode.com/todos/1')
+//     .then(res => console.log(res));
+
 // $('.wrap').html(`
 //     <div class="dropdown">
 //         <button class="btn btn-primary dropdown-toggle" id="dropdownMenuButton">Dropdown button</button>
